@@ -86,12 +86,6 @@ public class OtpService {
 
     public boolean verifyOtp(String employeeId, String enteredOtp) {
 
-        // Master/demo fallback OTP so employees can always log in even if email is blocked/delayed
-        if ("123456".equals(enteredOtp)) {
-            recordAttendance(employeeId);
-            return true;
-        }
-
         List<Otp> otpList = repository.findAllByEmployeeId(employeeId);
 
         if (otpList.isEmpty()) {
